@@ -1,11 +1,10 @@
 import nltk
 import time
+import pandas as pd
 from nltk.corpus import words
 from greedy import greedy_solver
 from heuristic import heuristic_solver
 from ai import ai_solver, load_model
-
-NUMBER_OF_GAMES = 1
 
 # Get all 5-letter words
 nltk.download('words', quiet=True)
@@ -42,18 +41,22 @@ for word in target_words:
     ai_times.append(time.time() - start_time)
     ai_attempts.append(ai_result[1])
 
-# Calculate averages
-average_greedy_time = sum(greedy_times) / len(greedy_times)
-average_greedy_attempts = sum(greedy_attempts) / len(greedy_attempts)
+# Create a DataFrame to display results
+results_df = pd.DataFrame({
+    "Solver": ["Greedy", "Heuristic", "AI"],
+    "Average Time (s)": [
+        sum(greedy_times) / len(greedy_times),
+        sum(heuristic_times) / len(heuristic_times),
+        sum(ai_times) / len(ai_times)
+    ],
+    "Average Attempts": [
+        sum(greedy_attempts) / len(greedy_attempts),
+        sum(heuristic_attempts) / len(heuristic_attempts),
+        sum(ai_attempts) / len(ai_attempts)
+    ]
+})
 
-average_heuristic_time = sum(heuristic_times) / len(heuristic_times)
-average_heuristic_attempts = sum(heuristic_attempts) / len(heuristic_attempts)
-
-average_ai_time = sum(ai_times) / len(ai_times)
-average_ai_attempts = sum(ai_attempts) / len(ai_attempts)
-
-# Print summary
+# Print the DataFrame
 print("\nSolver Performance Summary:")
-print(f"Greedy Solver - Average Time: {average_greedy_time:.4f}s, Average Attempts: {average_greedy_attempts:.2f}")
-print(f"Heuristic Solver - Average Time: {average_heuristic_time:.4f}s, Average Attempts: {average_heuristic_attempts:.2f}")
-print(f"AI Solver - Average Time: {average_ai_time:.4f}s, Average Attempts: {average_ai_attempts:.2f}")
+print(results_df)
+
