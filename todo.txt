@@ -1,5 +1,6 @@
 TODO
 - another clever solver (backtracking or dynamic programming)
+- edit distance solver
 - ai solver (if i got time)
 - clean up
 - read me
