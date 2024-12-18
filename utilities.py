@@ -14,6 +14,25 @@ def get_server_feedback(word: str, guess: str) -> Dict[str, Any]:
         return response.json()
     else:
         return {"error": response.text, "status_code": response.status_code}
+    
+def filter_candidates(candidates, feedback):
+    filtered = []
+    for word in candidates:
+        valid = True
+        for fb in feedback:
+            slot, char, result = fb["slot"], fb["guess"], fb["result"]
+            if result == "correct" and word[slot] != char:
+                valid = False
+                break
+            if result == "present" and (char not in word or word[slot] == char):
+                valid = False
+                break
+            if result == "absent" and char in word:
+                valid = False
+                break
+        if valid:
+            filtered.append(word)
+    return filtered
 
 # Example Usage
 if __name__ == "__main__":

@@ -1,6 +1,5 @@
 TODO
-
-- clever solver (backtracking or heuristic or dynamic programming)
+- another clever solver (backtracking or dynamic programming)
 - ai solver (if i got time)
 - clean up
 - read me
@@ -8,3 +7,4 @@ TODO
 DONE
 - call apis
 - greedy
+- heuristic solver using letter frequency
