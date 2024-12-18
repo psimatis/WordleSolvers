@@ -1,0 +1,7 @@
+TODO
+- call apis
+- brute force solver
+- clever solver (backtracking or heuristic or dynamic programming)
+- ai solver (if i got time)
+- clean up
+- read me
