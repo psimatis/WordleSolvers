@@ -6,9 +6,9 @@ from nltk.corpus import words
 import random
 from utilities import get_server_feedback, filter_candidates
 
+# Set up
 random.seed(0)
 torch.manual_seed(0)
-
 nltk.download('words', quiet=True)
 dictionary = [word.lower() for word in words.words() if len(word) == 5 and word.isalpha()]
 random.shuffle(dictionary)
@@ -17,6 +17,7 @@ WORD_LENGTH = 5
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 TRAIN_WORD_COUNT = 5000
 PATH = "ai_solver.pth"
+
 
 class WordleNN(nn.Module):
     def __init__(self, word_length, alphabet_length, hidden_size):
@@ -28,11 +29,14 @@ class WordleNN(nn.Module):
         x = torch.relu(self.fc1(x))
         return self.fc2(x)
     
+
+# Turns each letter of a word into a one-hot-encoded vector
 def one_hot_encode(word):
     one_hot = torch.zeros(WORD_LENGTH * len(ALPHABET))
     for i, char in enumerate(word):
         one_hot[i * len(ALPHABET) + ALPHABET.index(char)] = 1
     return one_hot
+
 
 def train_model(train_words, dictionary, epochs=10):
     model = WordleNN(WORD_LENGTH, len(ALPHABET), 64)
@@ -64,13 +68,14 @@ def train_model(train_words, dictionary, epochs=10):
     torch.save(model.state_dict(), PATH)
     print(f"Model saved to {PATH}")
 
-# Load the model
+
 def load_model(path):
     model = WordleNN(WORD_LENGTH, len(ALPHABET), 64)
     model.load_state_dict(torch.load(path, weights_only=False))
     model.eval()
     print(f"Model loaded from {path}")
     return model
+
 
 def predict(model, candidates):
     scores = []

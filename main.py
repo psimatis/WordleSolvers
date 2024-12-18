@@ -10,6 +10,7 @@ from ai import ai_solver, load_model
 nltk.download('words', quiet=True)
 dictionary = [word.lower() for word in words.words() if len(word) == 5 and word.isalpha()]
 
+# Words for the agents to predict
 target_words = ["apple", "bread", "chair", "dance", "eagle", "flame", "grass", "house", "jelly", "knife"]
 
 # Initialize timers and attempts tracking
@@ -17,7 +18,7 @@ greedy_times, greedy_attempts = [], []
 heuristic_times, heuristic_attempts = [], []
 ai_times, ai_attempts = [], []
 
-# Load AI model once
+# Load AI solver's model
 model = load_model("ai_solver.pth")
 
 for word in target_words:
@@ -37,7 +38,7 @@ for word in target_words:
 
     # # AI Solver
     start_time = time.time()
-    ai_result = ai_solver(model, dictionary, word)  # Should return (word, attempts)
+    ai_result = ai_solver(model, dictionary, word)
     ai_times.append(time.time() - start_time)
     ai_attempts.append(ai_result[1])
 
@@ -59,4 +60,3 @@ results_df = pd.DataFrame({
 # Print the DataFrame
 print("\nSolver Performance Summary:")
 print(results_df)
-

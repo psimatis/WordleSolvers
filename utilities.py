@@ -1,10 +1,9 @@
 import requests
 from typing import Dict, Any
 
-# Base URL
 BASE_URL = "https://wordle.votee.dev:8000"
 
-
+# Calls the given API and play the game
 def get_server_feedback(word: str, guess: str) -> Dict[str, Any]:
     """Call the /word/{word} endpoint with a GET request."""
     url = f"{BASE_URL}/word/{word}"
@@ -15,6 +14,7 @@ def get_server_feedback(word: str, guess: str) -> Dict[str, Any]:
     else:
         return {"error": response.text, "status_code": response.status_code}
     
+# Filters candidates depending on the API response
 def filter_candidates(candidates, feedback):
     filtered = []
     for word in candidates:
