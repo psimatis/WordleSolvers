@@ -1,7 +1,9 @@
 TODO
-- call apis
-- brute force solver
+- greedy
 - clever solver (backtracking or heuristic or dynamic programming)
 - ai solver (if i got time)
 - clean up
 - read me
+
+DONE
+- call apis
