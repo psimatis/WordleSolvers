@@ -1,3 +1,8 @@
+# Candidate
+# Panos Simatis
+# psimatis@hotmail.com
+# +852 59357074
+
 import nltk
 import time
 import pandas as pd
