@@ -1,5 +1,5 @@
 TODO
-- greedy
+
 - clever solver (backtracking or heuristic or dynamic programming)
 - ai solver (if i got time)
 - clean up
@@ -7,3 +7,4 @@ TODO
 
 DONE
 - call apis
+- greedy
