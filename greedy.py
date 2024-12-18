@@ -13,6 +13,7 @@ def greedy_solver(dictionary, target):
             return guess, attempts
         
         candidates = filter_candidates(candidates, feedback)
+
         if not candidates:
             break # method failed to solve wordle
         guess = candidates[0]

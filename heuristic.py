@@ -6,7 +6,7 @@ from utilities import get_server_feedback, filter_candidates
 def rank_candidates(word_list):
     letter_counter = Counter("".join(word_list))    
     def word_score(word):
-        return sum(letter_counter[letter] for letter in word)
+        return sum(letter_counter[letter] for letter in set(word))
     
     return sorted(word_list, key=word_score, reverse=True)
 
