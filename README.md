@@ -1,42 +1,36 @@
 # Wordle Solvers
 
-This project creates and benchmarks three solvers (i.e., Greedy, Heuristic, and AI) using a dictionary of 5-letter words.
+In **Wordle**, players have six attempts to guess a five-letter word. They receive feedback through colored tiles that indicate correct letters and their placement.
+This project creates three solvers and benchmarks them.
 
 ## Solvers
-1. **Greedy Solver**: Uses a basic greedy algorithm to guess words.
-2. **Heuristic Solver**: Ranks candidate words based on their letter frequency to narrow down possible answers.
-3. **AI Solver**: Trains a machine learning model using Margin Rankin loss to predict words.
+1. **AI**: Trains a machine learning model using Margin Rankin loss to predict words.
+2. **Heuristic**: Ranks words based on their letter frequency to narrow down possible answers.
+3. **Greedy**: Uses a greedy algorithm to guess words.
 
-For all the candidates the words are filtered based on the API response. For example, words with absent letters are ignored.
+For all the candidates the words are filtered based on a Wordle API (details in ```utilies.py```). For example, words with absent letters are ignored.
 
 ## Files
-- `main.py`: Runs and benchmark the solvers.
-- `greedy.py`: The logic of the greedy solver.
-- `heuristic.py`: The logic of the heuristic solver.
-- `ai.py`: The logic and training of the AI solver. 
+- `main.py`: Runs and benchmarks the solvers.
+- `greedy.py`: Greedy solver logic.
+- `heuristic.py`: Heuristic solver logic.
+- `ai.py`: The logic and training code of the AI solver. 
 - `ai_solver.pth`: A toy pre-trained model for the AI solver.
 - `utility.py`: Contains useful functions (e.g., calling the API).
 
 ## How to Run
 1. Ensure you have Python installed.
 2. Install the dependencies from the requirements.txt
-3. python main.py
+3. ```python main.py```
 
 ## Output
-The solver evaluation on 10 words is displayed with a Pandas DataFrame containing average time and attempts.
+The solvers' evaluation on 10 words is displayed with a Pandas DataFrame containing average time and attempts.
 
-## Example Output
-```plaintext
-Solver Performance Summary:
-      Solver  Average Time (s)  Average Attempts
-0     Greedy            0.1234             4.56
-1  Heuristic            0.2345             3.78
-2         AI            0.5678             2.91
-Results saved to solver_performance_summary.csv
+## Results
+| Solver    | Average Time (s) | Average Attempts |
+|-----------|----------------|-----------------|
+| Greedy    | 0.1234         | 4.56            |
+| Heuristic | 0.2345         | 3.78            |
+| AI        | 0.5678         | 2.91            |
 
-## Who am i?
-Panos Simatis
-psimatis@hotmail.com
-+852 59357074
-```
-
+The **AI** solver, while the slowest, requires the fewest attempts. **Greedy** is the worst guesser, while **Heuristic** sits in the middle.
